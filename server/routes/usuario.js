@@ -40,6 +40,38 @@ app.get('/usuario', [verificaToken],(req, res) => {
 
         });
 });
+app.get('/usuarioo',(req, res) => {
+    // return res.json({
+    //     usuario: req.usuario,
+    //     nombre: req.usuario.nombre,
+    //     email: req.usuario.email,
+    // });
+    console.log(req.usuario);
+    let desde = req.query.desde || 0;
+    desde = Number(desde);
+    let limite = req.query.limite || 100;
+    limite = Number(limite);
+
+    Usuario.find({estado: true}, 'nombre email role estado google role img') // Permite excluir los valores que se quieren mostrar { campo con condicion}
+        .skip(desde)
+        .limit(limite)
+        .exec((err, usuarios) => {
+            if (err) {
+                return res.status(400).json({
+                    ok: false,
+                    err: err
+                });
+            }
+            Usuario.count({estado: true},(err, conteo) => {
+                res.json({
+                    ok: true,
+                    usuarios,
+                    conteo
+                });
+            });
+
+        });
+});
 
 app.post('/usuario',[verificaToken,verificaAdmin_Role], (req, res) => {
 
