@@ -20,6 +20,7 @@ let urlDB;
 if (process.env.Node_ENV  === 'dev') {
     urlDB = 'mongodb://localhost/cafe'; //Si estamos en un entorno local
 } else  {
-    urlDB  =  process.env.MONGO_URL; //Si se encuentra en producción
+    // urlDB  =  process.env.MONGO_URL; //Si se encuentra en producción
+    urlDB  =  "mongodb+srv://admin:1193120855@cluster0-xjwrt.mongodb.net/cafe?retryWrites=true"; //Si se encuentra en producción
 }
 process.env.URLDB = urlDB;
