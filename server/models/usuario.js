@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+
 const uniqueValidator = require('mongoose-unique-validator');
 
 let Schema = mongoose.Schema;
@@ -39,6 +40,7 @@ let usuarioSchema = new Schema({
     }
 });
 
+//Excluimos la contraseña para que cuando deseemos retornar un objeto d este tipo no la retorne
 usuarioSchema.methods.toJSON = function () {
   let user = this;
   let userObject = user.toObject();
