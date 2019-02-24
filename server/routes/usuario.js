@@ -66,6 +66,8 @@ app.post('/usuario',[verificaToken,verificaAdmin_Role], (req, res) => {
     });
 });
 
+
+
 app.put('/usuario/:id',[verificaToken,verificaAdmin_Role], (req, res) => {
     let id = req.params['id'];
     let body = _.pick(req.body, ['nombre', 'email', 'img', 'role', 'estado']);
@@ -104,5 +106,33 @@ app.delete('/usuario/:id',[verificaToken,verificaAdmin_Role], (req, res) => {
         });
     });
 });
+
+//Insertar usuarios sin autenticacion
+app.post('/usuarioo', (req, res) => {
+
+    let body = req.body;
+
+    let usuario = new Usuario({
+        nombre: body.nombre,
+        email: body.email,
+        password: bcrypt.hashSync(body.password, 10),
+        role: body.role
+    });
+    usuario.save((err, usuarioDB) => {
+        if (err) {
+            return res.status(400).json({
+                ok: false,
+                err: err
+            });
+        }
+
+        res.json({
+            ok: true,
+            usuario: usuarioDB
+        });
+    });
+});
 module.exports = app;
+
+
 
