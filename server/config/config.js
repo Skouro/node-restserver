@@ -1,9 +1,7 @@
 //Puerto
 process.env.PORT = process.env.PORT || 3000;
-
 //Entorno
 process.env.Node_ENV  = process.env.Node_ENV  || 'dev';
-
 
 //Vencimiento del token
 //60 segundos
@@ -12,7 +10,9 @@ process.env.Node_ENV  = process.env.Node_ENV  || 'dev';
 //30 dias
 process.env.CADUCIDA_TOKEN =  60*60*24*30;
 //Semilla del token
-process.env.SEED = process.env.SEED  || 'chucho-el-cachucho-desarrollo';
+// process.env.SEED = process.env.SEED  || 'chucho-el-cachucho-desarrollo';
+process.env.SEED = 'chucho-el-cachucho-desarrollo';
+
 
 //Base de datos
 let urlDB;
