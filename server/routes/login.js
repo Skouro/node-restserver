@@ -37,7 +37,7 @@ app.post('/login',(req, res) => {
        }
        //Generacion del token que expira en un mes
         let token = jwt.sign({usuario: usuariDB},
-            process.env.SEED ,{expiresIn: process.env.CADUCIDA_TOKEN });
+            process.env.SEED ,{expiresIn: process.env.CADUCIDAD_TOKEN });
        res.json({
            ok: true,
            usuario : usuariDB,
