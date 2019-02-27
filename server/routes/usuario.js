@@ -58,7 +58,6 @@ app.post('/usuario',[verificaToken,verificaAdmin_Role], (req, res) => {
                 err: err
             });
         }
-
         res.json({
             ok: true,
             usuario: usuarioDB
